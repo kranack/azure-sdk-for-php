@@ -26,7 +26,7 @@
 namespace WindowsAzure\MediaServices\Authentication;
 
 /**
- * Enumerate types of Azure AD Credentials
+ * Enumerate types of Azure AD Credentials.
  *
  * @category  Microsoft
  *
@@ -34,12 +34,12 @@ namespace WindowsAzure\MediaServices\Authentication;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
-class AzureAdTokenCredentialType {
-
+class AzureAdTokenCredentialType
+{
     /**
      * User Credential by prompting user for user name and password.
      */

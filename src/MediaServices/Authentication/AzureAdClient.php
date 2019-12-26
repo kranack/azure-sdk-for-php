@@ -30,7 +30,6 @@ use WindowsAzure\Common\Internal\ServiceRestProxy;
 use WindowsAzure\Common\Internal\Resources;
 use WindowsAzure\Common\Internal\Http\IHttpClient;
 use WindowsAzure\Common\Internal\Serialization\JsonSerializer;
-use WindowsAzure\MediaServices\Authentication\AccessToken;
 
 /**
  * Azure AD rest proxy.
@@ -41,7 +40,7 @@ use WindowsAzure\MediaServices\Authentication\AccessToken;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
@@ -64,7 +63,7 @@ class AzureAdClient extends ServiceRestProxy
     }
 
     /**
-     * Acquire an Azure AD access token given the Client ID and Client Secret
+     * Acquire an Azure AD access token given the Client ID and Client Secret.
      *
      * @param string $resource     AzureAD resource asking for access to
      * @param string $clientId     AzureAD client Id
@@ -123,14 +122,15 @@ class AzureAdClient extends ServiceRestProxy
 
         $accessToken = $data['access_token'];
         $expirationTime = time() + intval($data['expires_in']);
+
         return new AccessToken($accessToken, $expirationTime);
     }
 
     /**
-     * Get access token using an asymmetric key
+     * Get access token using an asymmetric key.
      *
-     * @param string $grantType    OAuth request grant_type field value
-     * @param string $credentials  Asymmetrict Credentials
+     * @param string $grantType   OAuth request grant_type field value
+     * @param string $credentials Asymmetrict Credentials
      *
      * @return OAuthAccessToken
      */
@@ -185,16 +185,17 @@ class AzureAdClient extends ServiceRestProxy
 
         $accessToken = $data['access_token'];
         $expirationTime = time() + intval($data['expires_in']);
+
         return new AccessToken($accessToken, $expirationTime);
     }
 
     /**
-     * Acquire an Azure AD access token given the username and password
+     * Acquire an Azure AD access token given the username and password.
      *
-     * @param string $resource     AzureAD resource asking for access to
-     * @param string $clientId     AzureAD client Id
-     * @param string $username     Username
-     * @param string $password     Password
+     * @param string $resource AzureAD resource asking for access to
+     * @param string $clientId AzureAD client Id
+     * @param string $username Username
+     * @param string $password Password
      *
      * @return OAuthAccessToken
      */
@@ -255,22 +256,23 @@ class AzureAdClient extends ServiceRestProxy
 
         $accessToken = $data['access_token'];
         $expirationTime = time() + intval($data['expires_in']);
+
         return new AccessToken($accessToken, $expirationTime);
     }
 
-    private function encodeCertificateAsJWT($credentials) {
-
+    private function encodeCertificateAsJWT($credentials)
+    {
         $head = [];
         $head['x5t'] = $credentials->getFingerprint();
-        $head['x5c'] = [ $credentials->getCertificate() ];
+        $head['x5c'] = [$credentials->getCertificate()];
 
         $token = [];
 
         $token['aud'] = $this->getUri();
         $token['sub'] = $credentials->getClientId();
         $token['iss'] = $credentials->getClientId();
-        $token['nbf'] = (string)((new \DateTime("now", new \DateTimeZone('UTC')))->getTimestamp() - 60);
-        $token['exp'] = (string)((new \DateTime("now", new \DateTimeZone('UTC')))->getTimestamp() + 520);
+        $token['nbf'] = (string) ((new \DateTime('now', new \DateTimeZone('UTC')))->getTimestamp() - 60);
+        $token['exp'] = (string) ((new \DateTime('now', new \DateTimeZone('UTC')))->getTimestamp() + 520);
 
         return JWT::encode($token, $credentials->getPrivateKey(), 'RS256', null, $head);
     }

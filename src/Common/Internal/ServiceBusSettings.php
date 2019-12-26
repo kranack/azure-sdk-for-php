@@ -29,6 +29,7 @@ use WindowsAzure\Common\Internal\Http\HttpClient;
 use WindowsAzure\ServiceBus\Internal\WrapRestProxy;
 use WindowsAzure\Common\Internal\Filters\WrapFilter;
 use WindowsAzure\Common\Internal\Filters\SASFilter;
+
 /**
  * Represents the settings used to sign and access a request against the service
  * bus.
@@ -39,11 +40,12 @@ use WindowsAzure\Common\Internal\Filters\SASFilter;
  * @copyright 2012 Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
-class ServiceBusSettings extends ServiceSettings {
+class ServiceBusSettings extends ServiceSettings
+{
     /**
      * @var string
      */
@@ -122,7 +124,8 @@ class ServiceBusSettings extends ServiceSettings {
     /**
      * Initializes static members of the class.
      */
-    protected static function init() {
+    protected static function init()
+    {
         self::$_serviceBusEndpointSetting = self::settingWithFunc(
             Resources::SERVICE_BUS_ENDPOINT_NAME,
             Validate::getIsValidUri()
@@ -159,6 +162,7 @@ class ServiceBusSettings extends ServiceSettings {
 
     /**
      * Creates new Service Bus settings instance.
+     *
      * @param type $serviceBusEndpoint The Service Bus endpoint uri
      * @param type $filter
      */
@@ -168,14 +172,14 @@ class ServiceBusSettings extends ServiceSettings {
     ) {
         $this->_serviceBusEndpointUri = $serviceBusEndpoint;
         $this->_filter = $filter;
-
     }
 
     /**
-     * @param array $tokenizedSettings
+     * @param array  $tokenizedSettings
      * @param string $connectionString
      */
-    private static function createServiceBusWithWrapAuthentication(array $tokenizedSettings, $connectionString = '') {
+    private static function createServiceBusWithWrapAuthentication(array $tokenizedSettings, $connectionString = '')
+    {
         $required = [
             self::$_serviceBusEndpointSetting,
             self::$_wrapNameSetting,
@@ -217,10 +221,11 @@ class ServiceBusSettings extends ServiceSettings {
         ));
     }
     /**
-     * @param array $tokenizedSettings
+     * @param array  $tokenizedSettings
      * @param string $connectionString
      */
-    private static function createServiceBusWithSasAuthentication(array $tokenizedSettings, $connectionString = '') {
+    private static function createServiceBusWithSasAuthentication(array $tokenizedSettings, $connectionString = '')
+    {
         $required = [
             self::$_serviceBusEndpointSetting,
             self::$_sasKeyNameSetting,
@@ -252,9 +257,11 @@ class ServiceBusSettings extends ServiceSettings {
     }
     /**
      * @param $wrapEndpointUri
+     *
      * @return mixed
      */
-    protected static function createWrapService($wrapEndpointUri) {
+    protected static function createWrapService($wrapEndpointUri)
+    {
         $httpClient = new HttpClient();
         $wrapWrapper = new WrapRestProxy($httpClient, $wrapEndpointUri);
 
@@ -263,11 +270,13 @@ class ServiceBusSettings extends ServiceSettings {
     /**
      * @param $tokenizedSettings
      * @param $required
-     * @param array $optional
+     * @param array  $optional
      * @param string $connectionString
+     *
      * @return mixed
      */
-    private static function getMatchedSpecs($tokenizedSettings, $required, $optional = [], $connectionString = '') {
+    private static function getMatchedSpecs($tokenizedSettings, $required, $optional = [], $connectionString = '')
+    {
         $matchedSpecs = self::matchedSpecification(
             $tokenizedSettings,
             self::allRequired(...$required),
@@ -287,7 +296,8 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return ServiceBusSettings|void
      */
-    public static function createFromConnectionString($connectionString) {
+    public static function createFromConnectionString($connectionString)
+    {
         $tokenizedSettings = self::parseAndValidateKeys($connectionString);
         if (array_key_exists(Resources::SHARED_SHARED_ACCESS_KEY_NAME, $tokenizedSettings)) {
             return self::createServiceBusWithSasAuthentication($tokenizedSettings, $connectionString);
@@ -301,7 +311,8 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return string
      */
-    public function getServiceBusEndpointUri() {
+    public function getServiceBusEndpointUri()
+    {
         return $this->_serviceBusEndpointUri;
     }
 
@@ -310,7 +321,8 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return string
      */
-    public function getWrapEndpointUri() {
+    public function getWrapEndpointUri()
+    {
         return $this->_wrapEndpointUri;
     }
 
@@ -319,7 +331,8 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return string
      */
-    public function getWrapName() {
+    public function getWrapName()
+    {
         return $this->_wrapName;
     }
 
@@ -328,7 +341,8 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return string
      */
-    public function getWrapPassword() {
+    public function getWrapPassword()
+    {
         return $this->_wrapPassword;
     }
 
@@ -337,16 +351,19 @@ class ServiceBusSettings extends ServiceSettings {
      *
      * @return string
      */
-    public function getFilter() {
+    public function getFilter()
+    {
         return $this->_filter;
     }
 
     /**
      * Depricated!
      * Namespace is now included in the uri.
+     *
      * @return string
      */
-    public function getNamespace() {
+    public function getNamespace()
+    {
         return $this->_namespace;
     }
 }

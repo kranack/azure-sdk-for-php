@@ -34,7 +34,7 @@ namespace WindowsAzure\Common\Internal;
  * @copyright 2012 Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
@@ -548,10 +548,11 @@ class Utilities
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }
 
-
     /**
-     * Generates a GUID provided a 16 byte pseudo random string
-     * @param  string $data 16 bytes long data string
+     * Generates a GUID provided a 16 byte pseudo random string.
+     *
+     * @param string $data 16 bytes long data string
+     *
      * @return string A new GUID
      */
     private static function generateGuid($data)
@@ -645,7 +646,7 @@ class Utilities
         if (function_exists('random_bytes')) {
             return random_bytes($length);
         }
-        
+
         $buf = openssl_random_pseudo_bytes($length, $secure);
 
         if ($buf !== false) {
@@ -656,9 +657,11 @@ class Utilities
     }
 
     /**
-     * Fetch a random integer between $min and $max inclusive
-     * @param  int $min
-     * @param  int $max
+     * Fetch a random integer between $min and $max inclusive.
+     *
+     * @param int $min
+     * @param int $max
+     *
      * @return int
      */
     public static function generateRandomInt($min, $max)
@@ -667,7 +670,7 @@ class Utilities
         $bits = $bytes = $mask = $val = 0;
         while ($range > 0) {
             if ($bits % 8 === 0) {
-               ++$bytes;
+                ++$bytes;
             }
             ++$bits;
             $range >>= 1;
@@ -690,7 +693,6 @@ class Utilities
             $val += $valueShift;
 
             ++$attempts;
-
         } while (!is_int($val) || $val > $max || $val < $min);
 
         return (int) $val;
@@ -754,14 +756,16 @@ class Utilities
     /**
      * Replace all hex characters in a string with lowercase
      * and URL encode the resulting string.
-     * @param  string $str input string
+     *
+     * @param string $str input string
+     *
      * @return string URL Encoded string with 00-FF replaced with 00-ff
      */
     public static function lowerUrlencode($str)
     {
         return preg_replace_callback('/%[0-9A-F]{2}/',
             function (array $matches) {
-				return strtolower($matches[0]);
-        }, urlencode($str));
+                return strtolower($matches[0]);
+            }, urlencode($str));
     }
 }

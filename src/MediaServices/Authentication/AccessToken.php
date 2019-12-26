@@ -26,7 +26,7 @@
 namespace WindowsAzure\MediaServices\Authentication;
 
 /**
- * Represents a Bearer Token
+ * Represents a Bearer Token.
  *
  * @category  Microsoft
  *
@@ -34,21 +34,21 @@ namespace WindowsAzure\MediaServices\Authentication;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
 class AccessToken
 {
     /**
-     * Access Token
+     * Access Token.
      *
      * @var string
      */
     private $_access_token;
 
     /**
-     * Expiration time
+     * Expiration time.
      *
      * @var \DateTime
      */
@@ -57,7 +57,7 @@ class AccessToken
     /**
      * Create an Access Token.
      *
-     * @param string $accessToken The access token
+     * @param string    $accessToken    The access token
      * @param \DateTime $expirationTime The expiration time of the access token
      */
     public function __construct($accessToken, $expirationTime)
@@ -67,7 +67,7 @@ class AccessToken
     }
 
     /**
-     * Get the access token
+     * Get the access token.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class AccessToken
     }
 
     /**
-     * Get the access token expiration time
+     * Get the access token expiration time.
      *
      * @return \DateTime
      */
@@ -91,7 +91,8 @@ class AccessToken
      *
      * @return int $margin seconds of margin after while to get a new access token
      */
-    public function isValid($margin = 120) {
+    public function isValid($margin = 120)
+    {
         return ($this->_expiration_time - $margin) > time();
     }
 }

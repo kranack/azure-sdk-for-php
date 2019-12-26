@@ -25,11 +25,8 @@
 
 namespace WindowsAzure\MediaServices\Authentication;
 
-use WindowsAzure\MediaServices\Authentication\AzureEnvironment;
-use WindowsAzure\MediaServices\Authentication\AzureEnvironmentConstants;
-
 /**
- * Holds all Azure Media Services Environments
+ * Holds all Azure Media Services Environments.
  *
  * @category  Microsoft
  *
@@ -37,12 +34,12 @@ use WindowsAzure\MediaServices\Authentication\AzureEnvironmentConstants;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
-class AzureEnvironments {
-
+class AzureEnvironments
+{
     /**
      * Azure Cloud environment.
      */
@@ -63,8 +60,9 @@ class AzureEnvironments {
      */
     private static $AZURE_GERMAN_CLOUD_ENVIRONMENT;
 
-    public static function AZURE_CLOUD_ENVIRONMENT() {
-        if (self::$AZURE_CLOUD_ENVIRONMENT == NULL) {
+    public static function AZURE_CLOUD_ENVIRONMENT()
+    {
+        if (self::$AZURE_CLOUD_ENVIRONMENT == null) {
             self::$AZURE_CLOUD_ENVIRONMENT = new AzureEnvironment(
                 AzureEnvironmentConstants::AZURE_CLOUD_ACTIVE_DIRECTORY_ENDPOINT,
                 AzureEnvironmentConstants::AZURE_CLOUD_MEDIA_SERVICES_RESOURCE,
@@ -75,8 +73,9 @@ class AzureEnvironments {
         return self::$AZURE_CLOUD_ENVIRONMENT;
     }
 
-    public static function AZURE_CHINA_CLOUD_ENVIRONMENT() {
-        if (self::$AZURE_CHINA_CLOUD_ENVIRONMENT == NULL) {
+    public static function AZURE_CHINA_CLOUD_ENVIRONMENT()
+    {
+        if (self::$AZURE_CHINA_CLOUD_ENVIRONMENT == null) {
             self::$AZURE_CHINA_CLOUD_ENVIRONMENT = new AzureEnvironment(
                 AzureEnvironmentConstants::AZURE_CHINA_CLOUD_ACTIVE_DIRECTORY_ENDPOINT,
                 AzureEnvironmentConstants::AZURE_CHINA_CLOUD_MEDIA_SERVICES_RESOURCE,
@@ -87,8 +86,9 @@ class AzureEnvironments {
         return self::$AZURE_CHINA_CLOUD_ENVIRONMENT;
     }
 
-    public static function AZURE_GERMAN_CLOUD_ENVIRONMENT() {
-        if (self::$AZURE_GERMAN_CLOUD_ENVIRONMENT == NULL) {
+    public static function AZURE_GERMAN_CLOUD_ENVIRONMENT()
+    {
+        if (self::$AZURE_GERMAN_CLOUD_ENVIRONMENT == null) {
             self::$AZURE_GERMAN_CLOUD_ENVIRONMENT = new AzureEnvironment(
                 AzureEnvironmentConstants::AZURE_GERMAN_CLOUD_ACTIVE_DIRECTORY_ENDPOINT,
                 AzureEnvironmentConstants::AZURE_GERMAN_CLOUD_MEDIA_SERVICES_RESOURCE,
@@ -99,8 +99,9 @@ class AzureEnvironments {
         return self::$AZURE_GERMAN_CLOUD_ENVIRONMENT;
     }
 
-    public static function AZURE_US_GOVERNMENT_ENVIRONMENT() {
-        if (self::$AZURE_US_GOVERNMENT_ENVIRONMENT == NULL) {
+    public static function AZURE_US_GOVERNMENT_ENVIRONMENT()
+    {
+        if (self::$AZURE_US_GOVERNMENT_ENVIRONMENT == null) {
             self::$AZURE_US_GOVERNMENT_ENVIRONMENT = new AzureEnvironment(
                 AzureEnvironmentConstants::AZURE_US_GOVERNMENT_ACTIVE_DIRECTORY_ENDPOINT,
                 AzureEnvironmentConstants::AZURE_US_GOVERNMENT_MEDIA_SERVICES_RESOURCE,
@@ -111,4 +112,3 @@ class AzureEnvironments {
         return self::$AZURE_US_GOVERNMENT_ENVIRONMENT;
     }
 }
-

@@ -25,14 +25,8 @@
 
 namespace WindowsAzure\MediaServices\Authentication;
 
-use WindowsAzure\MediaServices\Authentication\AzureEnvironment;
-use WindowsAzure\MediaServices\Authentication\AzureAdClientUsernamePassword;
-use WindowsAzure\MediaServices\Authentication\AzureAdClientAsymmetricKey;
-use WindowsAzure\MediaServices\Authentication\AzureAdClientSymmetricKey;
-use WindowsAzure\MediaServices\Authentication\AzureAdClientUserCredentials;
-
 /**
- * Represents an Azure AD Credential for Azure Media Services
+ * Represents an Azure AD Credential for Azure Media Services.
  *
  * @category  Microsoft
  *
@@ -40,12 +34,12 @@ use WindowsAzure\MediaServices\Authentication\AzureAdClientUserCredentials;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
-class AzureAdTokenCredentials {
-
+class AzureAdTokenCredentials
+{
     /**
      * @var string
      */
@@ -69,35 +63,35 @@ class AzureAdTokenCredentials {
     /**
      * Initializes a new instance of the AzureEnvironment class.
      *
-     * @param string $tenant The tenant domain name.
-     * @param object $credential The credential.
-     * @param AzureEnvironment $azureEnvironment The Azure environment data.
+     * @param string           $tenant           The tenant domain name
+     * @param object           $credential       The credential
+     * @param AzureEnvironment $azureEnvironment The Azure environment data
      */
     public function __construct(
         $tenant,
         $credential,
-        $azureEnvironment) {
-
-        if ($tenant == NULL) {
-            throw new \InvalidArgumentException("tenant");
+        $azureEnvironment)
+    {
+        if ($tenant == null) {
+            throw new \InvalidArgumentException('tenant');
         }
 
-        if ($credential == NULL) {
-            throw new \InvalidArgumentException("credential");
+        if ($credential == null) {
+            throw new \InvalidArgumentException('credential');
         }
 
-        if ($azureEnvironment == NULL) {
-            throw new \InvalidArgumentException("azureEnvironment");
+        if ($azureEnvironment == null) {
+            throw new \InvalidArgumentException('azureEnvironment');
         }
 
         if ($credential instanceof AzureAdClientUserCredentials) {
             $this->_credentialType = AzureAdTokenCredentialType::USER_SECRET_CREDENTIAL;
-        } else if ($credential instanceof AzureAdClientSymmetricKey) {
+        } elseif ($credential instanceof AzureAdClientSymmetricKey) {
             $this->_credentialType = AzureAdTokenCredentialType::SERVICE_PRINCIPAL_WITH_CLIENT_SYMMETRIC_KEY;
-        } else if ($credential instanceof AzureAdClientAsymmetricKey) {
+        } elseif ($credential instanceof AzureAdClientAsymmetricKey) {
             $this->_credentialType = AzureAdTokenCredentialType::SERVICE_PRINCIPAL_WITH_CERTIFICATE;
         } else {
-            throw new \InvalidArgumentException("the credential must be a valid type");
+            throw new \InvalidArgumentException('the credential must be a valid type');
         }
 
         $this->_tenant = $tenant;
@@ -107,33 +101,41 @@ class AzureAdTokenCredentials {
 
     /**
      * Gets the tenant.
-     * @return string the tenant.
+     *
+     * @return string the tenant
      */
-    public function getTenant() {
+    public function getTenant()
+    {
         return $this->_tenant;
     }
 
     /**
      * Gets the credential.
-     * @return object the credential.
+     *
+     * @return object the credential
      */
-    public function getCredential() {
+    public function getCredential()
+    {
         return $this->_credential;
     }
 
     /**
      * Gets the credential type.
-     * @return int the credential type.
+     *
+     * @return int the credential type
      */
-    public function getCredentialType() {
+    public function getCredentialType()
+    {
         return $this->_credentialType;
     }
 
     /**
      * Gets the environment.
-     * @return AzureEnvironment the environment.
+     *
+     * @return AzureEnvironment the environment
      */
-    public function getAzureEnvironment() {
+    public function getAzureEnvironment()
+    {
         return $this->_azureEnvironment;
     }
 }

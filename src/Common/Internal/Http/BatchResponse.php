@@ -41,7 +41,7 @@ use Zend\Mime\Part;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
@@ -56,11 +56,14 @@ class BatchResponse
 
     /**
      * @param string $contentType
+     *
      * @return string
      */
-    private static function getBoundary($contentType) {
+    private static function getBoundary($contentType)
+    {
         $match = '';
         preg_match('/boundary=(.*)/', $contentType, $match);
+
         return str_replace('"', '', $match[1]);
     }
 
@@ -72,7 +75,7 @@ class BatchResponse
      */
     public function __construct(Response $response, BatchRequest $request = null)
     {
-        $content = (string)$response->getBody();
+        $content = (string) $response->getBody();
         $contentType = HttpClient::getResponseHeaders($response)['content-type'];
         $boundary = self::getBoundary($contentType);
         $mimeBody = Message::createFromMessage($content, $boundary);

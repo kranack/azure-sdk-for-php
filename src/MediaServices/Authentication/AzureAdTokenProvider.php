@@ -25,16 +25,11 @@
 
 namespace WindowsAzure\MediaServices\Authentication;
 
-use Firebase\JWT\JWT;
 use WindowsAzure\Common\Internal\Http\HttpClient;
 use WindowsAzure\Common\Internal\Resources;
-use WindowsAzure\MediaServices\Authentication\AccessToken;
-use WindowsAzure\MediaServices\Authentication\ITokenProvider;
-use WindowsAzure\MediaServices\Authentication\AzureAdClient;
-use WindowsAzure\MediaServices\Authentication\AzureAdTokenCredentials;
 
 /**
- * Represents an Azure AD Credential
+ * Represents an Azure AD Credential.
  *
  * @category  Microsoft
  *
@@ -42,12 +37,12 @@ use WindowsAzure\MediaServices\Authentication\AzureAdTokenCredentials;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
-class AzureAdTokenProvider implements ITokenProvider {
-
+class AzureAdTokenProvider implements ITokenProvider
+{
     /**
      * @var AzureAdTokenCredentials
      */
@@ -68,9 +63,10 @@ class AzureAdTokenProvider implements ITokenProvider {
      *
      * @param AzureAdTokenCredentials $credentials The AzureAdTokenCredentials
      */
-    public function __construct($credentials) {
-        if ($credentials == NULL) {
-            throw new \InvalidArgumentException("credentials");
+    public function __construct($credentials)
+    {
+        if ($credentials == null) {
+            throw new \InvalidArgumentException('credentials');
         }
 
         $this->_credentials = $credentials;
@@ -88,25 +84,29 @@ class AzureAdTokenProvider implements ITokenProvider {
     }
 
     /**
-     * Gets a valid access Token
+     * Gets a valid access Token.
+     *
      * @return AccessToken the access token object
      */
-    public function getAccessToken() {
+    public function getAccessToken()
+    {
         if (!is_null($this->_cachedAccessToken) &&
             $this->_cachedAccessToken->isValid()) {
             return $this->_cachedAccessToken;
         }
 
         $this->_cachedAccessToken = $this->acquireAccessToken();
+
         return $this->_cachedAccessToken;
     }
 
     /**
-     * Gets a valid access Token
+     * Gets a valid access Token.
+     *
      * @return AccessToken the access token object
      */
-    public function acquireAccessToken() {
-
+    public function acquireAccessToken()
+    {
         switch ($this->_credentials->getCredentialType()) {
             case AzureAdTokenCredentialType::USER_SECRET_CREDENTIAL:
                 return $this->_azureAdClient->acquireTokenWithUserCredentials(
@@ -128,26 +128,28 @@ class AzureAdTokenProvider implements ITokenProvider {
 
             case AzureAdTokenCredentialType::USER_CREDENTIAL:
                 throw new \Symfony\Component\DependencyInjection\Exception\RuntimeException(
-                    "Interactive user credential is currently not supported by the php sdk");
+                    'Interactive user credential is currently not supported by the php sdk');
 
             default:
                 throw new \Symfony\Component\DependencyInjection\Exception\RuntimeException(
-                        "Unknown token credential type");
+                        'Unknown token credential type');
         }
     }
 
     /**
-     * @param string $uri the URI to be canonicalized.
+     * @param string $uri the URI to be canonicalized
      */
-    private function canonicalizeUri($uri) {
-        if ($uri != NULL && substr($uri, -1) !== '/') {
-                return $uri . '/';
+    private function canonicalizeUri($uri)
+    {
+        if ($uri != null && substr($uri, -1) !== '/') {
+            return $uri.'/';
         }
 
         return $uri;
     }
 
-    private function isJWTValid($jwt) {
+    private function isJWTValid($jwt)
+    {
         $tks = explode('.', $jwt->getAccessToken());
         if (count($tks) != 3) {
             throw new UnexpectedValueException('Wrong number of segments');

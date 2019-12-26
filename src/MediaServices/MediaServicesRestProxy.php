@@ -76,7 +76,7 @@ use Psr\Http\Message\ResponseInterface;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
@@ -2174,9 +2174,9 @@ class MediaServicesRestProxy extends ServiceRestProxy implements IMediaServices
     /**
      * Rebind ContentKey.
      *
-     * @param ContentKey|string $contentKey            An ContentKey data or ContentKey Id
+     * @param ContentKey|string $contentKey      An ContentKey data or ContentKey Id
      * @param string            $x509Certificate X.509 certificate (with only the public key) that was used to encrypt
-     *                                                 the clear storage encryption/common protection content keys
+     *                                           the clear storage encryption/common protection content keys
      *
      * @return string Content key
      */

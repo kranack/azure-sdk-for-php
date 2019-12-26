@@ -26,7 +26,7 @@
 namespace WindowsAzure\MediaServices\Authentication;
 
 /**
- * Represents an Azure AD client username & password
+ * Represents an Azure AD client username & password.
  *
  * @category  Microsoft
  *
@@ -34,28 +34,28 @@ namespace WindowsAzure\MediaServices\Authentication;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
 class AzureAdClientUserCredentials
 {
     /**
-     * Username
+     * Username.
      *
      * @var string
      */
     private $_username;
 
     /**
-     * Password
+     * Password.
      *
      * @var string
      */
     private $_password;
 
     /**
-     * Create an AzureAdClientUserCredentials
+     * Create an AzureAdClientUserCredentials.
      *
      * @param string $username The username
      * @param string $password The password
@@ -67,7 +67,7 @@ class AzureAdClientUserCredentials
     }
 
     /**
-     * Get the username
+     * Get the username.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class AzureAdClientUserCredentials
     }
 
     /**
-     * Get the password
+     * Get the password.
      *
      * @return string
      */

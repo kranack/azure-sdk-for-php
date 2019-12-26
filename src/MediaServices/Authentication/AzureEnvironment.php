@@ -26,7 +26,7 @@
 namespace WindowsAzure\MediaServices\Authentication;
 
 /**
- * Represents an Azure Media Services Environment
+ * Represents an Azure Media Services Environment.
  *
  * @category  Microsoft
  *
@@ -34,12 +34,12 @@ namespace WindowsAzure\MediaServices\Authentication;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
-class AzureEnvironment {
-
+class AzureEnvironment
+{
     /**
      * @var string
      */
@@ -62,64 +62,72 @@ class AzureEnvironment {
 
     /**
      * Gets the Active Directory endpoint.
-     * @return string Active Directory endpoint.
+     *
+     * @return string Active Directory endpoint
      */
-    public function getActiveDirectoryEndpoint() {
+    public function getActiveDirectoryEndpoint()
+    {
         return $this->_activeDirectoryEndpoint;
     }
 
     /**
      * Gets the Media Services resource.
+     *
      * @return string Media Services resource
      */
-    public function getMediaServicesResource() {
+    public function getMediaServicesResource()
+    {
         return $this->_mediaServicesResource;
     }
 
     /**
      * Gets the Media Services SDK client ID.
+     *
      * @return string Media Services SDK client ID
      */
-    public function getMediaServicesSdkClientId() {
+    public function getMediaServicesSdkClientId()
+    {
         return $this->_mediaServicesSdkClientId;
     }
 
     /**
      * Gets Media Services SDK application redirect URI.
-     * @return string Media Services SDK application redirect URI.
+     *
+     * @return string Media Services SDK application redirect URI
      */
-    public function getMediaServicesSdkRedirectUri() {
+    public function getMediaServicesSdkRedirectUri()
+    {
         return $this->_this.mediaServicesSdkRedirectUri;
     }
 
     /**
      * Initializes a new instance of the AzureEnvironment class.
      *
-     * @param string $activeDirectoryEndpoint The Active Directory endpoint.
-     * @param string $mediaServicesResource The Media Services resource.
-     * @param string $mediaServicesSdkClientId The Media Services SDK client ID.
-     * @param string $mediaServicesSdkRedirectUri The Media Services SDK redirect URI.
+     * @param string $activeDirectoryEndpoint     The Active Directory endpoint
+     * @param string $mediaServicesResource       The Media Services resource
+     * @param string $mediaServicesSdkClientId    The Media Services SDK client ID
+     * @param string $mediaServicesSdkRedirectUri The Media Services SDK redirect URI
      */
     public function __construct(
         $activeDirectoryEndpoint,
         $mediaServicesResource,
         $mediaServicesSdkClientId,
-        $mediaServicesSdkRedirectUri) {
-
-        if ($activeDirectoryEndpoint == NULL) {
-            throw new \InvalidArgumentException("activeDirectoryEndpoint");
+        $mediaServicesSdkRedirectUri)
+    {
+        if ($activeDirectoryEndpoint == null) {
+            throw new \InvalidArgumentException('activeDirectoryEndpoint');
         }
 
-        if ($mediaServicesResource == NULL) {
-            throw new \InvalidArgumentException("mediaServicesResource");
+        if ($mediaServicesResource == null) {
+            throw new \InvalidArgumentException('mediaServicesResource');
         }
 
-        if ($mediaServicesSdkClientId == NULL) {
-            throw new \InvalidArgumentException("mediaServicesSdkClientId");
+        if ($mediaServicesSdkClientId == null) {
+            throw new \InvalidArgumentException('mediaServicesSdkClientId');
         }
 
-        if ($mediaServicesSdkRedirectUri == NULL) {
-            throw new \InvalidArgumentException("mediaServicesSdkRedirectUri");
+        if ($mediaServicesSdkRedirectUri == null) {
+            throw new \InvalidArgumentException('mediaServicesSdkRedirectUri');
         }
 
         $this->_activeDirectoryEndpoint = $activeDirectoryEndpoint;

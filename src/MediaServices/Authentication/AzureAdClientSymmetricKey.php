@@ -26,7 +26,7 @@
 namespace WindowsAzure\MediaServices\Authentication;
 
 /**
- * Represents an Azure AD client symmetric key
+ * Represents an Azure AD client symmetric key.
  *
  * @category  Microsoft
  *
@@ -34,30 +34,30 @@ namespace WindowsAzure\MediaServices\Authentication;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
 class AzureAdClientSymmetricKey
 {
     /**
-     * client id
+     * client id.
      *
      * @var string
      */
     private $_clientId;
 
     /**
-     * client secret
+     * client secret.
      *
      * @var string
      */
     private $_clientSecret;
 
     /**
-     * Create an AzureAdClientSymmetricKey
+     * Create an AzureAdClientSymmetricKey.
      *
-     * @param string $clientId The client id
+     * @param string $clientId     The client id
      * @param string $clientSecret The client secret
      */
     public function __construct($clientId, $clientSecret)
@@ -67,7 +67,7 @@ class AzureAdClientSymmetricKey
     }
 
     /**
-     * Get the client id
+     * Get the client id.
      *
      * @return string
      */
@@ -77,7 +77,7 @@ class AzureAdClientSymmetricKey
     }
 
     /**
-     * Get the client secret
+     * Get the client secret.
      *
      * @return string
      */

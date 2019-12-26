@@ -26,7 +26,6 @@
 namespace WindowsAzure\Common\Internal;
 
 use WindowsAzure\MediaServices\Authentication\ITokenProvider;
-use WindowsAzure\MediaServices\Authentication\AzureAdTokenProvider;
 
 /**
  * Represents the settings used to sign and access a request against the service
@@ -38,7 +37,7 @@ use WindowsAzure\MediaServices\Authentication\AzureAdTokenProvider;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
@@ -57,8 +56,8 @@ class MediaServicesSettings extends ServiceSettings
     /**
      * Creates new media services settings instance.
      *
-     * @param string $endpointUri      The account REST API endpoint
-     * @param ITokenProvider $tokenProvider    The token provider
+     * @param string         $endpointUri   The account REST API endpoint
+     * @param ITokenProvider $tokenProvider The token provider
      */
     public function __construct(
         $endpointUri,

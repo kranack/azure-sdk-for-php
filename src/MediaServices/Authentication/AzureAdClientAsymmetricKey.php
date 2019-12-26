@@ -27,9 +27,8 @@ namespace WindowsAzure\MediaServices\Authentication;
 
 use Herrera\Json\Exception\Exception;
 
-
 /**
- * Represents an Azure AD client asymmetric key
+ * Represents an Azure AD client asymmetric key.
  *
  * @category  Microsoft
  *
@@ -37,31 +36,31 @@ use Herrera\Json\Exception\Exception;
  * @copyright Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/WindowsAzure/azure-sdk-for-php
  */
 class AzureAdClientAsymmetricKey
 {
     /**
-     * client id
+     * client id.
      *
      * @var string
      */
     private $_clientId;
 
     /**
-     * client certificates
+     * client certificates.
      *
      * @var string
      */
     private $_certs;
 
     /**
-     * Create an AzureAdClientSymmetricKey
+     * Create an AzureAdClientSymmetricKey.
      *
      * @param string $clientId The client id
-     * @param string $certs client certificates
+     * @param string $certs    client certificates
      */
     public function __construct($clientId, $certs)
     {
@@ -73,7 +72,7 @@ class AzureAdClientAsymmetricKey
     }
 
     /**
-     * Get the client id
+     * Get the client id.
      *
      * @return string
      */
@@ -83,7 +82,7 @@ class AzureAdClientAsymmetricKey
     }
 
     /**
-     * Get the X.509 certificate fingerprint
+     * Get the X.509 certificate fingerprint.
      *
      * @return string X.509 certificate fingerprint encoded as Base64
      */
@@ -93,16 +92,19 @@ class AzureAdClientAsymmetricKey
     }
 
     /**
-     * Get the X.509 certificate
-     * @param boolean $justbase64 if true (the default), returns the certificate as plain base64 string (without headers nor formatting)
+     * Get the X.509 certificate.
+     *
+     * @param bool $justbase64 if true (the default), returns the certificate as plain base64 string (without headers nor formatting)
+     *
      * @return string the certificate
      */
     public function getCertificate($justbase64 = true)
     {
         if ($justbase64) {
-            $str=str_replace("\n", "", $this->_certs['cert']);
-            $str = str_replace("-----BEGIN CERTIFICATE-----","", $str);
-            $str = str_replace("-----END CERTIFICATE-----","", $str);
+            $str = str_replace("\n", '', $this->_certs['cert']);
+            $str = str_replace('-----BEGIN CERTIFICATE-----', '', $str);
+            $str = str_replace('-----END CERTIFICATE-----', '', $str);
+
             return $str;
         }
 

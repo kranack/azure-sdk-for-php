@@ -42,7 +42,6 @@ use WindowsAzure\Common\Internal\Utilities;
 use WindowsAzure\Common\Internal\Http\HttpClient;
 use WindowsAzure\Common\Internal\Filters\HeadersFilter;
 use WindowsAzure\Common\Internal\Filters\AuthenticationFilter;
-use WindowsAzure\Common\Internal\Filters\WrapFilter;
 use WindowsAzure\Common\Internal\Serialization\XmlSerializer;
 use WindowsAzure\Common\Internal\Authentication\SharedKeyAuthScheme;
 use WindowsAzure\Common\Internal\Authentication\TableSharedKeyLiteAuthScheme;
@@ -55,9 +54,6 @@ use WindowsAzure\ServiceBus\Internal\WrapRestProxy;
 use WindowsAzure\ServiceManagement\Internal\IServiceManagement;
 use WindowsAzure\ServiceManagement\ServiceManagementRestProxy;
 use WindowsAzure\MediaServices\MediaServicesRestProxy;
-use WindowsAzure\MediaServices\Authentication\AzureAdClient;
-use WindowsAzure\Common\Internal\OAuthRestProxy;
-use WindowsAzure\Common\Internal\Authentication\OAuthScheme;
 
 /**
  * Builds azure service objects.
@@ -68,7 +64,7 @@ use WindowsAzure\Common\Internal\Authentication\OAuthScheme;
  * @copyright 2012 Microsoft Corporation
  * @license   http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  *
- * @version   Release: 0.5.0_2016-11
+ * @version   Release: 0.6.0_2019-12
  *
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
