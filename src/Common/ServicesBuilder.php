@@ -25,14 +25,16 @@
 
 namespace WindowsAzure\Common;
 
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Blob\Internal\IBlob;
+use MicrosoftAzure\Storage\Queue\QueueRestProxy;
 use MicrosoftAzure\Storage\Queue\Internal\IQueue;
+use MicrosoftAzure\Storage\Table\TableRestProxy;
 use MicrosoftAzure\Storage\Table\Internal\AtomReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IAtomReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IMimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\ITable;
 use MicrosoftAzure\Storage\Table\Internal\MimeReaderWriter;
-use MicrosoftAzure\Storage\Common\ServicesBuilder as StorageServiceBuilder;
 use WindowsAzure\Common\Internal\Authentication\StorageAuthScheme;
 use WindowsAzure\Common\Internal\Http\IHttpClient;
 use WindowsAzure\Common\Internal\MediaServicesSettings;
@@ -178,7 +180,7 @@ class ServicesBuilder
      */
     public function createQueueService($connectionString)
     {
-        return StorageServiceBuilder::getInstance()->createQueueService($connectionString);
+        return QueueRestProxy::createQueueService($connectionString);
     }
 
     /**
@@ -190,7 +192,7 @@ class ServicesBuilder
      */
     public function createBlobService($connectionString)
     {
-        return StorageServiceBuilder::getInstance()->createBlobService($connectionString);
+        return BlobRestProxy::createBlobService($connectionString);
     }
 
     /**
@@ -202,7 +204,7 @@ class ServicesBuilder
      */
     public function createTableService($connectionString)
     {
-        return StorageServiceBuilder::getInstance()->createTableService($connectionString);
+        return TableRestProxy::createTableService($connectionString);
     }
 
     /**
